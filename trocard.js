@@ -20,9 +20,20 @@ document.getElementById('formLogin').addEventListener('submit', function(e) {
     document.getElementById('mensagemLogin').innerText = "Login realizado!";
   }
   usuarioAtual = usuario;
+  atualizarPerfil();
   atualizarRanking();
   atualizarConquistas();
 });
+
+// PERFIL
+function atualizarPerfil() {
+  if (!usuarioAtual) return;
+  const perfil = document.getElementById('dadosPerfil');
+  perfil.innerHTML = `
+    <p><strong>Usuário:</strong> ${usuarioAtual.nome}</p>
+    <p><strong>Figurinhas na coleção:</strong> ${usuarioAtual.colecao.length}</p>
+  `;
+}
 
 // RANKING
 function atualizarRanking() {
@@ -82,16 +93,5 @@ document.getElementById('btnEnviarChat').addEventListener('click', function() {
   const msg = document.getElementById('mensagemChat').value;
   if (msg.trim() === '') return;
   mensagensChat.push({ usuario: usuarioAtual ? usuarioAtual.nome : "Anônimo", texto: msg });
-  document.getElementById('mensagemChat').value = '';
-  renderChat();
-});
-
-function renderChat() {
-  const chatBox = document.getElementById('chatBox');
-  chatBox.innerHTML = '';
-  mensagensChat.forEach(m => {
-    const linha = document.createElement('p');
-    linha.textContent = `${m.usuario}: ${m.texto}`;
-    chatBox.appendChild(linha);
-  });
-}
+  document.getElementById('mensagemChat
+                          
